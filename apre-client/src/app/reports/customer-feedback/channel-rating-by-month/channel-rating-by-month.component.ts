@@ -20,7 +20,7 @@ import { ReactiveFormsModule, FormBuilder, Validators } from '@angular/forms';
         }
 
         <div class="form__group">
-          <label class="label" for="month">Month *</label> <!-- Add a red astrick to the Month Label using the required class -->
+          <label class="label" for="month">Month <span class="required">*</span></label> <!-- Add a red asterisk to the Month Label using the required class -->
           <select class="select" formControlName="month" id="month" name="month">
             @for(month of months; track month) {
               <option value="{{ month.value }}">{{ month.name }}</option>
