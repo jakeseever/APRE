@@ -143,3 +143,86 @@ describe('Apre Sales Report API - Sales by Region', () => {
     });
   });
 });
+
+
+describe('APRE Sales Report API - Sales Data', () => {
+  it('should fetch a list of sales data', async() => {
+    mongo.mockImplementation(async (callback) => {
+      const db = {
+        collection: jest.fn().mockReturnValue({
+          find: jest.fn().mockReturnValue({
+            toArray: jest.fn().mockResolvedValue([
+              { id: 1, total: 100 }
+            ])
+          })
+        })
+      };
+         await callback(db);
+    });
+    const response = await request(app).get('/api/reports/sales/sales-data');
+
+    expect(response.status).toBe(200);
+    expect(response.body).toBeDefined();
+    expect(response.body).toEqual([{ id: 1, total: 100 }]);
+  });
+
+  it('should return an empty array when there are no sales', async () => {
+    mongo.mockImplementation(async (callback) => {
+      const db = {
+        collection: jest.fn().mockReturnValue({
+          find: jest.fn().mockReturnValue({
+            toArray: jest.fn().mockResolvedValue([])
+          })
+        })
+      }
+      await callback(db)
+    });
+    const response = await request(app).get('/api/reports/sales/sales-data');
+
+    expect(response.status).toBe(200);
+    expect(response.body).toBeDefined();
+    expect(response.body).toEqual([]);
+  });
+});
+
+//Test the Yearly Sales Data API with Mock Data
+describe('APRE Sales Report API - Yearly Sales Data', () => {
+  it('should fetch a list of yearly sales data', async() => {
+    mongo.mockImplementation(async (callback) => {
+      const db = {
+        collection: jest.fn().mockReturnValue({
+          find: jest.fn().mockReturnValue({
+            toArray: jest.fn().mockResolvedValue([
+              { id: 1, total: 100 }
+            ])
+          })
+        })
+      };
+         await callback(db);
+    });
+    const response = await request(app).get('/api/reports/sales/yearly-sales-data'); // Get the yearly-sales data as a test, set it equal to the response.
+
+    expect(response.status).toBe(200); //Expect a 200 response code.
+    expect(response.body).toBeDefined();
+    expect(response.body).toEqual([{ id: 1, total: 100 }]); //Expected response value from the body
+  });
+
+  //Check for an empy array and handle accordingly if there are no sales.
+  it('should return an empty array when there are no sales that year', async () => {
+    mongo.mockImplementation(async (callback) => {
+      const db = {
+        collection: jest.fn().mockReturnValue({
+          find: jest.fn().mockReturnValue({
+            toArray: jest.fn().mockResolvedValue([]) //Mocking an empty array of sales.
+          })
+        })
+      }
+      await callback(db)
+    });
+    const response = await request(app).get('/api/reports/sales/yearly-sales-data'); //Store the get request in the response variable.
+
+    expect(response.status).toBe(200); //Expected Response value of 200
+    expect(response.body).toBeDefined();
+    expect(response.body).toEqual([]); //Expecting an empty array returned value.
+  });
+}); 

@@ -18,13 +18,12 @@ import { TableComponent } from './../../../shared/table/table.component';
 } -->
      <div class="card table-card">
        <app-table
-          [title]="'Sales Data - TabularView'"
+          [title]="'Sales Data - Tabular View'"
           [data]="salesData"
           [recordsPerPage]="50"
           [headers]="['region', 'product', 'category', 'channel', 'amount']"
-          [sortableColumns]="['region', 'product', 'category', 'channel', 'amount']"     
+          [sortableColumns]="['region', 'product', 'category', 'channel', 'amount']"  
            >
-          <p>test</p>
        </app-table>
      </div>
    </div>
@@ -47,6 +46,7 @@ import { TableComponent } from './../../../shared/table/table.component';
       }
   `
 })
+
 export class SalesDataComponent {
   salesData: any[] = [];
   //errorMessage: string;

@@ -78,4 +78,32 @@ router.get('/regions/:region', (req, res, next) => {
   }
 });
 
+router.get('/sales-data', (req, res, next) => {
+  try {
+    mongo (async db => {
+      const salesData = await db.collection('sales').find().toArray();
+      res.send(salesData);
+    }, next);
+  } catch (err) {
+    console.error('Error getting sales data: ', err)
+    next(err);
+  }
+});
+
+//I started here
+
+router.get('/yearly-sales-data', (req, res, next) => {
+
+  try {
+    mongo (async db => {
+      const yearlySalesData = await db.collection('sales').find().toArray();
+      res.send(yearlySalesData);
+      console.log(yearlySalesData);
+    }, next);
+  } catch (err) {
+    console.error('Error getting yearly sales data: ', err)
+    next(err);
+  }
+});
+
 module.exports = router;

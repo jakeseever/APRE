@@ -6,6 +6,7 @@
  * Description: Main layout of the MEAN Stack Application
  */
 import { Component } from '@angular/core';
+import { TestBed } from '@angular/core/testing';
 import { Router, RouterLink, RouterOutlet } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
 
@@ -307,6 +308,8 @@ export class MainLayoutComponent {
   salesReports = [
     { name: 'Sales by Region', url: '/reports/sales/sales-by-region' },
     { name: 'Sales by Region - Tabular', url: '/reports/sales/sales-by-region-tabular' },
+    { name: 'Sales Data', url: '/reports/sales/sales-data'},
+    { name: 'Yearly Sales Data', url: '/reports/sales/yearly-sales-data'}
     // Add more reports as needed
   ];
 
