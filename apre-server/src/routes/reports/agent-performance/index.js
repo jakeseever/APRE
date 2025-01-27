@@ -93,4 +93,40 @@ router.get('/call-duration-by-date-range', (req, res, next) => {
   }
 });
 
+/**
+ * @description
+ *
+ * GET /teams
+ *
+ * Fetches a list of distinct agent teams.
+ *
+ * Example:
+ * fetch('/teams')
+ *  .then(response => response.json())
+ *  .then(data => console.log(data));
+ */
+router.get('/teams', (req, res, next) => {
+  try {
+    mongo (async db => {
+      const teams = await db.collection('agentPerformance').distinct('team');
+      res.send(teams);
+    }, next);
+  } catch (err) {
+    console.error('Error getting teams: ', err);
+    next(err);
+  }
+});
+
+router.get('/teams/:team', (req, res, next) => {
+  try {
+    mongo (async db => {
+      const agentPerformanceData = await db.collection('agentPerformance').find().toArray();   
+      res.send(agentPerformanceData);
+      console.log(agentPerformanceData);
+    }, next);
+  } catch (err) {
+    console.error('Error getting Agent Performance Data: ', err)
+    next(err);
+  }
+})
 module.exports = router;

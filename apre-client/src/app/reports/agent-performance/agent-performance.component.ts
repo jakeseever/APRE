@@ -4,6 +4,7 @@
  * File: agent-performance.component.ts
  * Description: Agent performance component
  */
+import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 
