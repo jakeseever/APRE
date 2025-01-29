@@ -100,7 +100,7 @@ export class AgentPerformanceByTeamComponent {
           for (let data of this.agentData) { // Loop over the agent data
            if(team == data['team']) {  //If the selected team matches the data value use it.
 
-            this.teamData.push(data); //If the the selected value matched, push it to the array.
+           // this.teamData.push(data); //If the the selected value matched, push it to the array.
 
               data['Team'] = data['team'];
               data['Call Duration'] = data['callDuration'];
