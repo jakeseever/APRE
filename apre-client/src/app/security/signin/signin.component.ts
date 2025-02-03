@@ -25,12 +25,8 @@ import { CookieService } from 'ngx-cookie-service';
         </div>
         <div class="signin__form-group">
           <label for="password" class="signin__label">Password</label>
-<<<<<<< HEAD
-          <input id="password" formControlName="password" type="password" class="signin__input" placeholder="Enter your password" /> <!-- Added the placeholder text. M-029 JS 012125 -->        </div>
-=======
           <input id="password" formControlName="password" type="password" class="signin__input" placeholder="Enter your password" /> <!-- Added the placeholder text. M-029 JS 012125 --> 
         </div>
->>>>>>> 4b7f8da (Add the agent performance by team component.)
         <input type="submit" class="signin__button" Value="Submit" />
       </form>
       <a href="/" class="signin__return-link">Return to Home</a>

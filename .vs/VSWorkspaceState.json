@@ -1,0 +1,13 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\apre-client",
+    "\\apre-client\\src",
+    "\\apre-client\\src\\app",
+    "\\apre-client\\src\\app\\reports",
+    "\\apre-client\\src\\app\\reports\\customer-feedback",
+    "\\apre-client\\src\\app\\reports\\customer-feedback\\customer-feedback-by-type"
+  ],
+  "SelectedNode": "\\apre-client\\src\\app\\reports\\customer-feedback\\customer-feedback-by-type\\customer-feedback-by-type.component.ts",
+  "PreviewInSolutionExplorer": false
+}

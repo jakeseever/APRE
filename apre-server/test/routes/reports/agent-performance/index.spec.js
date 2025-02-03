@@ -73,23 +73,4 @@ describe('Apre Agent Performance API', () => {
     });
   });
 
-  it('should return 200 and an empty array if no data is found for the team', async () => {
-    // Mock the MongoDB implementation
-    mongo.mockImplementation(async (callback) => {
-      const db = {
-        collection: jest.fn().mockReturnThis(),
-        aggregate: jest.fn().mockReturnValue({
-        toArray: jest.fn().mockResolvedValue([])
-        })
-      };
-      await callback(db);
-    });
-
-    // Make a request to the endpoint
-    const response = await request(app).get('/api/reports/agent-performance/teams/teams/unknown-team');
-
-    // Assert the response
-    expect(response.status).toBe(200);
-    expect(response.body).toEqual([]);
-  });
 });

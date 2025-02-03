@@ -42,11 +42,12 @@ import { CommonModule } from '@angular/common';
         </div>
 
         <div class="form__actions">
+          <button class="button button--secondary" (click)="onCancel()">Cancel</button> <!-- M-050 Cancel button takes you back to user details -->
           <input type="submit" class="button button--primary" value="Submit">
         </div>
       </form>
       <br />
-      <a class="link link--secondary" routerLink="/user-management/users">Return</a>
+     <!-- <a class="link link--secondary" routerLink="/user-management/users">Return</a> --> <!-- Replace link with Cancel button-->
     </div>
   `,
   styles: ``
@@ -84,6 +85,10 @@ export class UserDetailsComponent {
         });
       }
     });
+  }
+
+  onCancel(){
+    this.router.navigate(['/user-management/users']); //Return to the users view when cancel button clicked 
   }
 
   editUser() {
