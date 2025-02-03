@@ -28,6 +28,7 @@ import { SalesByRegionTabularComponent } from './reports/sales/sales-by-region-t
 import { SalesDataComponent } from './reports/sales/sales-data/sales-data.component';
 import { YearlySalesDataComponent } from './reports/sales/yearly-sales-data/yearly-sales-data.component';
 import { AgentPerformanceByTeamComponent } from './reports/agent-performance/agent-performance-by-team/agent-performance-by-team.component';
+import { CustomerFeedbackByTypeComponent } from './reports/customer-feedback/customer-feedback-by-type/customer-feedback-by-type.component';
 // Export user-management routes
 export const userManagementRoutes: Routes = [
   {
@@ -86,6 +87,10 @@ export const customerFeedbackRoutes: Routes = [
   {
     path: 'channel-rating-by-month',
     component: ChannelRatingByMonthComponent
+  },
+  {
+    path: 'customer-feedback-by-type',
+    component: CustomerFeedbackByTypeComponent
   }
 ];
 
@@ -131,6 +136,11 @@ export const routes: Routes = [
         component: CustomerFeedbackComponent,
         children: customerFeedbackRoutes
       }
+      /*{
+        path: 'reports/customer-feedback-by-type',
+        component: CustomerFeedbackByTypeComponent,
+        children: customerFeedbackRoutes
+      } */
     ],
     canActivate: [authGuard]
   },

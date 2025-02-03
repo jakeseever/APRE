@@ -6,7 +6,7 @@
  */
 
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { AgentPerformanceByTeamComponent } from './agent-performance-by-team.component';
 
 describe('AgentPerformanceByTeamComponent', () => {
@@ -15,7 +15,7 @@ describe('AgentPerformanceByTeamComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [AgentPerformanceByTeamComponent]
+      imports: [HttpClientTestingModule,AgentPerformanceByTeamComponent]
     })
     .compileComponents();
 

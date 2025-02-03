@@ -6,16 +6,17 @@
  */
 
 
-import { HttpClient } from '@angular/common/http';
 import { AfterViewInit, ChangeDetectorRef, Component } from '@angular/core';
 import { environment } from '../../../../environments/environment';
+import { CommonModule} from '@angular/common';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { TableComponent } from '../../../shared/table/table.component';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-agent-performance-by-team',
   standalone: true,
-  imports: [ReactiveFormsModule, TableComponent],
+  imports: [ReactiveFormsModule, TableComponent, CommonModule],
   template: `
     <h1>Agent Performance by Team</h1>
     <div class="team-container">
@@ -64,7 +65,7 @@ import { TableComponent } from '../../../shared/table/table.component';
     }    
   `]
   }) 
-export class AgentPerformanceByTeamComponent {
+export class AgentPerformanceByTeamComponent implements AfterViewInit {
   teams: string[] = [];
   agentData: [] = [];
   teamData: [] = [];
@@ -97,17 +98,12 @@ export class AgentPerformanceByTeamComponent {
     this.http.get(`${environment.apiBaseUrl}/reports/agent-performance/teams/${team}`).subscribe({
         next: (data: any) => {
           this.agentData = data;
-          for (let data of this.agentData) { // Loop over the agent data
-           if(team == data['team']) {  //If the selected team matches the data value use it.
-
-           // this.teamData.push(data); //If the the selected value matched, push it to the array.
-
+          for (let data of this.agentData) { // Loop over the agent data and display the data in the  agent perfomance by team table.
               data['Team'] = data['team'];
               data['Call Duration'] = data['callDuration'];
               data['Customer Feedback'] = data['customerFeedback'];
               data['Resolution Time'] = data['resolutionTime'];
             }         
-          }  
         }
     })
   }

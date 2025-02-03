@@ -120,7 +120,7 @@ router.get('/teams', (req, res, next) => {
 router.get('/teams/:team', (req, res, next) => {
   try {
     mongo (async db => {
-      const agentPerformanceData = await db.collection('agentPerformance').find().toArray();   
+      const agentPerformanceData = await db.collection('agentPerformance').aggregate([{$match: { team: req.params.team }}]).toArray();   
       res.send(agentPerformanceData);
       console.log(agentPerformanceData);
     }, next);

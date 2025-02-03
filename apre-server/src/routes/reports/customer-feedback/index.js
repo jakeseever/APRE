@@ -92,4 +92,61 @@ router.get('/channel-rating-by-month', (req, res, next) => {
   }
 });
 
+/**
+ * @description
+ *
+ * GET /feedbackTypes
+ *
+ * Fetches a list of distinct agent teams.
+ *
+ * Example:
+ * fetch('/feedbackTypes')
+ *  .then(response => response.json())
+ *  .then(data => console.log(feedbackTypes));
+ */
+router.get('/feedbackTypes', (req, res, next) => {
+  try {
+
+  //  const { feedbackType } = req.query;
+
+ /*   if (!feedbackType) {
+      return next(createError(400, 'Feedback Type is required.'));
+    }*/
+    mongo (async db => {
+      const feedbackTypes = await db.collection('customerFeedback').distinct('feedbackType');
+      res.send(feedbackTypes);
+      console.log(feedbackTypes);
+    }, next);
+  } catch (err) {
+    console.error('Error getting feedback types: ', err);
+    next(err);
+  }
+}); 
+
+/**
+ * @description
+ *
+ * GET /feedbackTypes
+ *
+ * Fetches a list of distinct agent teams.
+ *
+ * Example:
+ * fetch('/feedbackTypes/feedbackType')
+ *  .then(response => response.json())
+ *  .then(data => console.log(CustomerFeedbackData));
+ */
+router.get('/feedbackTypes/:feedbackType', (req, res, next) => {
+  try {
+    mongo (async db => {
+      const customerFeedbackData = await db.collection('customerFeedback').aggregate([{$match: { feedbackType: req.params.feedbackType }}]).toArray();   
+      res.send(customerFeedbackData);
+      console.log(customerFeedbackData);
+    }, next);
+  } catch (err) {
+    console.error('Error getting Customer Feedback Data: ', err)
+    next(err);
+  }
+})
+
+
 module.exports = router;
